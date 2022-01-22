@@ -20,13 +20,26 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "prettier --check . && eslint . --ext .js,.ts",
+    "lint:fix": "prettier --write . && eslint . --ext .js,.ts --fix",
+    "typehint": "npx tsc --noEmit",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "airbnb-base",
+      "eslint-config-prettier"
+    ],
+    "rules": {
+      "import/no-unresolved": "off",
+      "import/extensions": [
+        "warn",
+        "never"
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -39,5 +52,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.2.2",
+    "prettier": "^2.5.1"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --cache --fix --ext .jsx,.js",
+    "*.{js,ts,css,md,yml,html,json}": "prettier --write"
   }
 }
