@@ -14,7 +14,7 @@ export const PizzaConfiguratorCheckGroup = ({
   onChange,
 }: PizzaConfiguratorCheckGroupProps) => (
   <fieldset>
-    <legend>{title}:</legend>
+    <legend>{title}</legend>
     {values.map((item) => (
       <label key={item}>
         <input

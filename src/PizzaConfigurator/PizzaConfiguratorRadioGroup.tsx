@@ -14,7 +14,7 @@ export const PizzaConfiguratorRadioGroup = ({
   onChange,
 }: PizzaConfiguratorRadioGroupProps) => (
   <fieldset>
-    <legend>{title}:</legend>
+    <legend>{title}</legend>
     {values.map((item) => (
       <label key={item}>
         <input
