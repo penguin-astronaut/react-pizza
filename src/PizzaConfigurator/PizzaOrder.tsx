@@ -10,6 +10,7 @@ export const PizzaOrder = ({ pizza }: IPizzaOrderProps) => (
     <h2>Ваш заказ:</h2>
     <p>Размер: {pizza.size}</p>
     <p>Тесто: {pizza.dough}</p>
+    <p>Соус: {pizza.sauce}</p>
     <p>
       Сыр: {pizza.cheese.length === 0 ? 'Без сыра' : pizza.cheese.join(',')}
     </p>
