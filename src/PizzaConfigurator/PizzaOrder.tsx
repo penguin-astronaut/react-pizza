@@ -20,6 +20,7 @@ export const PizzaOrder = ({ pizza }: IPizzaOrderProps) => (
         ? 'Без овощей'
         : pizza.vegetables.join(',')}
     </p>
+    <p>Сумма: {pizza.price}</p>
     <button>Оплатить</button>
   </div>
 );
