@@ -1,11 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { PizzaConfiguratorCheckGroup } from './PizzaConfiguratorCheckGroup';
+import { CheckGroup } from './CheckGroup';
 
 describe('PizzaConfiguratorCheckGroup', () => {
   it('render', () => {
     render(
-      <PizzaConfiguratorCheckGroup
-        values={['checkbox_1', 'checkbox_2', 'checkbox_2']}
+      <CheckGroup
+        values={['checkbox_1', 'checkbox_2', 'checkbox_3']}
         title={'Checkbox group'}
         onChange={() => {}}
         checkedValues={[]}
@@ -20,7 +20,7 @@ describe('PizzaConfiguratorCheckGroup', () => {
     const onChange = jest.fn();
 
     render(
-      <PizzaConfiguratorCheckGroup
+      <CheckGroup
         values={['checkbox_1', 'checkbox_2', 'checkbox_3']}
         title={'Checkbox group'}
         onChange={onChange}

@@ -1,18 +1,18 @@
 import React, { ChangeEvent } from 'react';
 
-interface PizzaConfiguratorCheckGroupProps {
+interface ICheckGroupProps {
   values: (string | number)[];
   title: string;
   checkedValues: (string | number)[];
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const PizzaConfiguratorCheckGroup = ({
+export const CheckGroup = ({
   values,
   checkedValues,
   title,
   onChange,
-}: PizzaConfiguratorCheckGroupProps) => (
+}: ICheckGroupProps) => (
   <fieldset>
     <legend>{title}</legend>
     {values.map((item) => (

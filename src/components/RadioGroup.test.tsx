@@ -1,10 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { PizzaConfiguratorRadioGroup } from './PizzaConfiguratorRadioGroup';
+import { RadioGroup } from './RadioGroup';
 
 describe('PizzaConfiguratorRadioGroup', () => {
   it('render', () => {
     render(
-      <PizzaConfiguratorRadioGroup
+      <RadioGroup
         values={['radio_1', 'radio_2']}
         title={'Radio group'}
         checkedValue={'radio_1'}
@@ -20,7 +20,7 @@ describe('PizzaConfiguratorRadioGroup', () => {
     const onChange = jest.fn();
 
     render(
-      <PizzaConfiguratorRadioGroup
+      <RadioGroup
         values={['radio_1', 'radio_2', 'radio_3', 'radio_4']}
         title={'Radio group'}
         checkedValue={'radio_1'}

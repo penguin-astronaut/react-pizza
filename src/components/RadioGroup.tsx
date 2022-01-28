@@ -1,18 +1,18 @@
 import React, { ChangeEvent } from 'react';
 
-interface PizzaConfiguratorRadioGroupProps {
+interface IRadioGroupProps {
   values: (string | number)[];
   title: string;
   checkedValue: string | number;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const PizzaConfiguratorRadioGroup = ({
+export const RadioGroup = ({
   values,
   checkedValue,
   title,
   onChange,
-}: PizzaConfiguratorRadioGroupProps) => (
+}: IRadioGroupProps) => (
   <fieldset>
     <legend>{title}</legend>
     {values.map((item) => (
