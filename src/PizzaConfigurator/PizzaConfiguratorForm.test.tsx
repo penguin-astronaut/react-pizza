@@ -7,7 +7,7 @@ describe('PizzaConfiguratorForm', () => {
   it('render', () => {
     render(
       <PizzaConfiguratorForm
-        createPizza={(() => {}) as React.Dispatch<React.SetStateAction<IPizza>>}
+        setPizza={(() => {}) as React.Dispatch<React.SetStateAction<IPizza>>}
       />
     );
 
@@ -24,7 +24,7 @@ describe('PizzaConfiguratorForm', () => {
   it('change sum', () => {
     render(
       <PizzaConfiguratorForm
-        createPizza={(() => {}) as React.Dispatch<React.SetStateAction<IPizza>>}
+        setPizza={(() => {}) as React.Dispatch<React.SetStateAction<IPizza>>}
       />
     );
 
@@ -44,9 +44,7 @@ describe('PizzaConfiguratorForm', () => {
 
     render(
       <PizzaConfiguratorForm
-        createPizza={
-          createPizza as React.Dispatch<React.SetStateAction<IPizza>>
-        }
+        setPizza={createPizza as React.Dispatch<React.SetStateAction<IPizza>>}
       />
     );
 

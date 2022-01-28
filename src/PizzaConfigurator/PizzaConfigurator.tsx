@@ -17,10 +17,10 @@ export const PizzaConfigurator = () => {
 
   return (
     <div className={'configurator'}>
-      {pizza.size ? (
+      {Object.values(pizza).length !== 0 ? (
         <PizzaOrder pizza={pizza} />
       ) : (
-        <PizzaConfiguratorForm createPizza={setPizza} />
+        <PizzaConfiguratorForm setPizza={setPizza} />
       )}
     </div>
   );

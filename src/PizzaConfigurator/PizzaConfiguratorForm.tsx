@@ -1,15 +1,15 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { calculatePizzaPrice } from '../calculatePizzaPrice';
-import { PizzaConfiguratorRadioGroup } from './PizzaConfiguratorRadioGroup';
-import { PizzaConfiguratorCheckGroup } from './PizzaConfiguratorCheckGroup';
+import { RadioGroup } from '../components/RadioGroup';
+import { CheckGroup } from '../components/CheckGroup';
 import { IPizza } from './PizzaConfigurator';
 
 interface IPizzaConfiguratorFormProps {
-  createPizza: React.Dispatch<React.SetStateAction<IPizza>>;
+  setPizza: React.Dispatch<React.SetStateAction<IPizza>>;
 }
 
 export const PizzaConfiguratorForm = ({
-  createPizza,
+  setPizza,
 }: IPizzaConfiguratorFormProps) => {
   const [pizzaSize, setPizzaSize] = useState(30);
   const [doughType, setDoughType] = useState('пышное');
@@ -18,7 +18,7 @@ export const PizzaConfiguratorForm = ({
   const [vegetables, setVegetables] = useState<string[]>([]);
   const [meat, setMeat] = useState<string[]>([]);
 
-  const data = {
+  const PIZZA_OPTIONS = {
     size: [30, 35],
     dough: ['пышное', 'тонкое'],
     sauce: ['томатный', 'белый', 'острый'],
@@ -37,7 +37,7 @@ export const PizzaConfiguratorForm = ({
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    createPizza({
+    setPizza({
       size: pizzaSize,
       dough: doughType,
       meat,
@@ -48,76 +48,63 @@ export const PizzaConfiguratorForm = ({
     });
   };
 
+  const checkHandler = (
+    event: ChangeEvent<HTMLInputElement>,
+    setState: React.Dispatch<React.SetStateAction<string[]>>
+  ) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setState((state) => [...state, value]);
+    } else {
+      setState((state) => state.filter((c) => c !== value));
+    }
+  };
+
   return (
     <div className="configurator-form">
       <h2>Соберите пиццу</h2>
       <form onSubmit={onSubmit}>
-        <PizzaConfiguratorRadioGroup
-          values={data.size}
+        <RadioGroup
+          values={PIZZA_OPTIONS.size}
           title={'Выберете размер'}
           checkedValue={pizzaSize}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             setPizzaSize(parseInt(event.target.value, 10));
           }}
         />
-        <PizzaConfiguratorRadioGroup
-          values={data.dough}
+        <RadioGroup
+          values={PIZZA_OPTIONS.dough}
           title={'Выберете тесто'}
           checkedValue={doughType}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             setDoughType(event.target.value);
           }}
         />
-        <PizzaConfiguratorRadioGroup
-          values={data.sauce}
+        <RadioGroup
+          values={PIZZA_OPTIONS.sauce}
           title={'Выберете соус'}
           checkedValue={sauce}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             setSauce(event.target.value);
           }}
         />
-        <PizzaConfiguratorCheckGroup
-          values={data.cheese}
+        <CheckGroup
+          values={PIZZA_OPTIONS.cheese}
           title={'Добавьте сыр'}
           checkedValues={cheese}
-          onChange={(e) => {
-            const { value, checked } = e.target;
-            if (checked) {
-              setCheese((cheeseState) => [...cheeseState, value]);
-            } else {
-              setCheese((cheeseState) =>
-                cheeseState.filter((c) => c !== value)
-              );
-            }
-          }}
+          onChange={(e) => checkHandler(e, setCheese)}
         />
-        <PizzaConfiguratorCheckGroup
-          values={data.vegetables}
+        <CheckGroup
+          values={PIZZA_OPTIONS.vegetables}
           title={'Добавьте овощи'}
           checkedValues={vegetables}
-          onChange={(e) => {
-            const { value, checked } = e.target;
-            if (checked) {
-              setVegetables((vegetablesState) => [...vegetablesState, value]);
-            } else {
-              setVegetables((vegetablesState) =>
-                vegetablesState.filter((v) => v !== value)
-              );
-            }
-          }}
+          onChange={(e) => checkHandler(e, setVegetables)}
         />
-        <PizzaConfiguratorCheckGroup
-          values={data.meat}
+        <CheckGroup
+          values={PIZZA_OPTIONS.meat}
           title={'Добавьте мясо'}
           checkedValues={meat}
-          onChange={(e) => {
-            const { value, checked } = e.target;
-            if (checked) {
-              setMeat((meatState) => [...meatState, value]);
-            } else {
-              setMeat((meatState) => meatState.filter((m) => m !== value));
-            }
-          }}
+          onChange={(e) => checkHandler(e, setMeat)}
         />
         <button>Заказать {price}</button>
       </form>
