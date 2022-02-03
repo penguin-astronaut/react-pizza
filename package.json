@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sentry/react": "^6.17.3",
+    "@sentry/tracing": "^6.17.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -24,7 +26,8 @@
     "lint": "prettier --check . && eslint . --ext .js,.ts",
     "lint:fix": "prettier --write . && eslint . --ext .js,.ts --fix",
     "typehint": "npx tsc --noEmit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "(export REACT_APP_SENTRY_RELEASE=$(git rev-parse --short=12 HEAD); react-scripts build)"
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +41,11 @@
       "import/extensions": [
         "warn",
         "never"
+      ],
+      "import/prefer-default-export": "off",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error"
       ]
     }
   },
@@ -62,7 +70,7 @@
     "prettier": "^2.5.1"
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --cache --fix --ext .jsx,.js",
-    "*.{js,ts,css,md,yml,html,json}": "prettier --write"
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*.{js,ts,tsx,css,md,yml,html,json}": "prettier --write"
   }
 }
